@@ -28,7 +28,7 @@ const CATEGORIES: Category[] = [
     name: "Billing",
     description: "Master quick retail billing, thermal receipt layout setup, and billing templates.",
     icon: "ReceiptText",
-    videoCount: 2 // Shifted Scheme/Kitty out
+    videoCount: 3 // Shifted Scheme/Kitty out
   },
   {
     id: 4,
@@ -63,7 +63,7 @@ const CATEGORIES: Category[] = [
     name: "RFID",
     description: "Configure RFID reader hardware, batch tag items, and execute stock audit in seconds.",
     icon: "Radio",
-    videoCount: 3
+    videoCount: 7
   },
   {
     id: 9,
@@ -112,7 +112,7 @@ const CATEGORIES: Category[] = [
     name: "Mobile App",
     description: "Sync mobile dashboard, live sales notifications, and offline access controls.",
     icon: "Smartphone",
-    videoCount: 1
+    videoCount: 2
   },
   {
     id: 16,
@@ -147,7 +147,7 @@ const CATEGORIES: Category[] = [
     name: "Scheme / Kitty",
     description: "Manage customer monthly savings schemes, collection ledgers, and scheme maturity payouts.",
     icon: "Layers",
-    videoCount: 3
+    videoCount: 1
   },
   {
     id: 21,
