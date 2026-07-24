@@ -97,7 +97,7 @@ export default function Footer() {
         {/* Bottom copyright / policy links */}
         <div className="mt-12 pt-8 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-zinc-500 text-xs">
-            &copy; {currentYear} Online Munim Academy. All rights reserved. Built with Next.js.
+            &copy; {currentYear} Online Munim Academy. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <Link href="/support" className="flex items-center gap-1.5 text-zinc-500 hover:text-white text-xs transition-colors">
