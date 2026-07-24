@@ -36,7 +36,6 @@ export default function CategoriesPage() {
   const coreModules = [
     {
       title: "Software Demo",
-      description: "Master initial settings, company profile configuration, custom tax invoices, print layouts, database synchronization, and core software settings.",
       categoryNames: ["Software Setup", "Tips & Tricks", "Troubleshooting", "Installation"],
       icon: <Settings className="w-6 h-6 text-[#FF7A00]" />,
       color: "border-[#FF7A00]/20 hover:border-[#FF7A00]/40 shadow-orange-500/5 hover:shadow-orange-500/10",
@@ -44,7 +43,6 @@ export default function CategoriesPage() {
     },
     {
       title: "Jewellery App Demo",
-      description: "Learn how to connect your jewelry shop database to our mobile catalog. Track real-time showroom sales dashboards, design catalogs, and schemes online.",
       categoryNames: ["Mobile App"],
       icon: <Smartphone className="w-6 h-6 text-[#3B82F6]" />,
       color: "border-[#3B82F6]/20 hover:border-[#3B82F6]/40 shadow-blue-500/5 hover:shadow-blue-500/10",
@@ -52,7 +50,6 @@ export default function CategoriesPage() {
     },
     {
       title: "Scheme Demo",
-      description: "Configure gold monthly installment schemes, manage kitty ledger sheets, track payment collections, and process maturity scheme payouts.",
       categoryNames: ["Scheme / Kitty"],
       icon: <Layers className="w-6 h-6 text-[#10B981]" />,
       color: "border-[#10B981]/20 hover:border-[#10B981]/40 shadow-green-500/5 hover:shadow-green-500/10",
@@ -60,7 +57,6 @@ export default function CategoriesPage() {
     },
     {
       title: "Loan Demo",
-      description: "Configure pawnbroker ledgers, record weight dimensions of gold collateral ornaments, calculate monthly/daily interest, and track loans.",
       categoryNames: ["Gold Loan / Girvi"],
       icon: <BadgeDollarSign className="w-6 h-6 text-[#EF4444]" />,
       color: "border-[#EF4444]/20 hover:border-[#EF4444]/40 shadow-red-500/5 hover:shadow-red-500/10",
@@ -127,9 +123,6 @@ export default function CategoriesPage() {
             <h1 className="text-3xl md:text-5xl font-extrabold font-display text-white">
               Core Training Modules
             </h1>
-            <p className="text-zinc-400 text-sm md:text-base max-w-xl">
-              Select a module block to view step-by-step Online Munim billing software training guides.
-            </p>
           </div>
 
           {/* Catalog Filter */}
@@ -179,17 +172,11 @@ export default function CategoriesPage() {
                     <h3 className="text-xl md:text-2xl font-bold font-display text-white group-hover:text-accent transition-colors">
                       {module.title}
                     </h3>
-                    <p className="text-zinc-400 text-sm mt-3 leading-relaxed">
-                      {module.description}
-                    </p>
                   </div>
 
                   {/* Videos Sub-Curriculum List */}
                   {module.videos.length > 0 && (
                     <div className="space-y-2 border-t border-zinc-900/50 pt-5">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider block mb-3">
-                        Curriculum Checklist
-                      </span>
                       <div className="space-y-2 max-h-48 overflow-y-auto pr-2 scrollbar-thin">
                         {module.videos.map((vid) => (
                           <Link 

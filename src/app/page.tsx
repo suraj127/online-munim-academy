@@ -161,11 +161,6 @@ export default function HomePage() {
           transition={{ duration: 0.6 }}
           className="space-y-6"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-accent font-medium backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Premium Learning Hub</span>
-          </div>
-
           <h1 className="text-4xl md:text-7xl font-extrabold font-display leading-tight tracking-tight text-white">
             Master Online Munim <br />
             <span className="bg-gradient-to-r from-[#FF7A00] to-[#3B82F6] bg-clip-text text-transparent">
@@ -203,7 +198,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="group relative rounded-3xl overflow-hidden aspect-[21/9] min-h-[350px] border border-white/10 bg-zinc-950 flex flex-col justify-end p-6 md:p-12 shadow-2xl"
+            className="group relative rounded-3xl overflow-hidden aspect-video md:aspect-[21/9] min-h-[300px] md:min-h-[380px] border border-white/10 bg-zinc-950 flex flex-col justify-end p-6 md:p-12 shadow-2xl"
           >
             {/* Background image overlay */}
             <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
@@ -292,7 +287,6 @@ export default function HomePage() {
             <h2 className="text-2xl md:text-3xl font-bold font-display text-white flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-accent animate-pulse" /> Quick Tips & Shorts
             </h2>
-            <p className="text-zinc-400 text-sm mt-1">Hover over any short to autoplay a quick setup guide.</p>
           </div>
           {/* Scroll Navigation Arrows */}
           <div className="flex gap-2 relative z-10">
@@ -376,7 +370,6 @@ export default function HomePage() {
         <div className="flex justify-between items-end mb-8">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold font-display text-white">Latest Videos</h2>
-            <p className="text-zinc-400 text-sm mt-1">Recently added tutorials to keep you updated.</p>
           </div>
           <Link href="/videos" className="flex items-center text-accent hover:text-white text-sm font-medium transition-colors">
             View All Videos <ChevronRight className="w-4 h-4 ml-1" />
@@ -434,14 +427,13 @@ export default function HomePage() {
         <div className="flex justify-between items-end mb-8">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold font-display text-white">Popular Tutorials</h2>
-            <p className="text-zinc-400 text-sm mt-1">Highly requested guides and advanced configurations.</p>
           </div>
           <Link href="/videos?difficulty=Advanced" className="flex items-center text-accent hover:text-white text-sm font-medium transition-colors">
             Advanced Guides <ChevronRight className="w-4 h-4 ml-1" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {popularVideos.map((video) => (
             <Link key={video.id} href={`/videos/${video.id}`} className="group">
               <div className="glass-card rounded-2xl overflow-hidden h-full flex flex-col justify-between">

@@ -140,9 +140,6 @@ function VideosListContent() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-zinc-900 pb-8 mb-10">
         <div>
           <h1 className="text-3xl md:text-5xl font-extrabold font-display text-white">Watch Tutorials</h1>
-          <p className="text-zinc-400 text-sm mt-1">
-            Browse our full library of software training videos.
-          </p>
         </div>
 
         {/* Live Search Input */}
