@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import * as Icons from 'lucide-react';
 import { getYouTubeThumbnail } from '@/utils/youtube';
 import Logo from '@/components/Logo';
+import JewelryAmbientBackground from '@/components/JewelryAmbientBackground';
 
 interface Video {
   id: number;
@@ -150,9 +151,7 @@ export default function HomePage() {
 
   return (
     <div className="relative min-h-screen bg-[#040814] overflow-hidden">
-      {/* Background Gradients */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] -z-10" />
-      <div className="absolute top-1/3 right-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[140px] -z-10" />
+      <JewelryAmbientBackground />
 
       {/* Hero Section */}
       <section className="relative pt-20 pb-16 md:pt-32 md:pb-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
