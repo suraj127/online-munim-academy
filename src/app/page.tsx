@@ -272,24 +272,28 @@ export default function HomePage() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-4 px-4 pb-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:pb-0 md:px-0 md:mx-0 md:overflow-x-visible md:snap-none"
         >
           {coreModules.map((module) => (
-            <motion.div key={module.title} variants={itemVariants}>
+            <motion.div 
+              key={module.title} 
+              variants={itemVariants}
+              className="shrink-0 snap-start w-[280px] sm:w-[320px] md:w-auto md:shrink md:snap-none"
+            >
               <Link href={`/videos?category=${encodeURIComponent(module.categoryName)}`}>
-                <div className="glass-card p-6 rounded-2xl h-full flex flex-col justify-between group">
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-110 transition-transform duration-300">
-                      <CategoryIcon name={module.icon} className="w-6 h-6" />
+                <div className="glass-card p-5 md:p-6 rounded-2xl h-full flex flex-col justify-between group">
+                  <div className="space-y-3 md:space-y-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-primary/10 to-accent/10 border border-accent/20 flex items-center justify-center text-accent group-hover:scale-110 transition-transform duration-300">
+                      <CategoryIcon name={module.icon} className="w-5 h-5 md:w-6 md:h-6" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold font-display text-white group-hover:text-accent transition-colors">
+                      <h3 className="text-base md:text-lg font-bold font-display text-white group-hover:text-accent transition-colors">
                         {module.title}
                       </h3>
-                      <p className="text-zinc-400 text-sm mt-1 line-clamp-3 leading-relaxed">{module.description}</p>
+                      <p className="text-zinc-400 text-xs md:text-sm mt-1 line-clamp-2 md:line-clamp-3 leading-relaxed">{module.description}</p>
                     </div>
                   </div>
-                  <div className="mt-6 flex justify-between items-center text-xs text-zinc-500 font-medium border-t border-zinc-900/50 pt-4">
+                  <div className="mt-4 md:mt-6 flex justify-between items-center text-xs text-zinc-500 font-medium border-t border-zinc-900/50 pt-3 md:pt-4">
                     <span>{module.videoCount} Videos Available</span>
                     <span className="flex items-center text-accent opacity-0 group-hover:opacity-100 transition-opacity">
                       Browse <ChevronRight className="w-4 h-4 text-accent ml-1" />
