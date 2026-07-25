@@ -402,9 +402,13 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-4 px-4 pb-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:pb-0 sm:px-0 sm:mx-0 sm:overflow-x-visible sm:snap-none">
           {latestVideos.map((video) => (
-            <Link key={video.id} href={`/videos/${video.id}`} className="group">
+            <Link 
+              key={video.id} 
+              href={`/videos/${video.id}`} 
+              className="group shrink-0 snap-start w-[280px] sm:w-auto sm:shrink sm:snap-none"
+            >
               <div className="glass-card rounded-2xl overflow-hidden h-full flex flex-col">
                 <div className="relative aspect-video w-full bg-zinc-900 border-b border-white/5">
                   <img
@@ -459,9 +463,13 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-4 px-4 pb-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:pb-0 sm:px-0 sm:mx-0 sm:overflow-x-visible sm:snap-none">
           {popularVideos.map((video) => (
-            <Link key={video.id} href={`/videos/${video.id}`} className="group">
+            <Link 
+              key={video.id} 
+              href={`/videos/${video.id}`} 
+              className="group shrink-0 snap-start w-[280px] sm:w-auto sm:shrink sm:snap-none"
+            >
               <div className="glass-card rounded-2xl overflow-hidden h-full flex flex-col justify-between">
                 <div className="relative aspect-video w-full bg-zinc-900 border-b border-white/5">
                   <img
