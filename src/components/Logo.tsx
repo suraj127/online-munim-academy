@@ -29,23 +29,20 @@ export default function Logo({ showText = true, className = '', size = 'md' }: L
         <style>
           {`
             @keyframes logo-blink {
-              0%, 90%, 100% {
+              0%, 100% {
                 transform: scaleY(1);
               }
-              95% {
-                transform: scaleY(0.15);
+              50% {
+                transform: scaleY(0.1);
               }
             }
             .logo-eye-left {
-              animation: logo-blink 4s infinite;
-              transform-origin: center;
-              transform-box: fill-box;
+              animation: logo-blink 2s infinite ease-in-out;
+              transform-origin: 42px 43.5px;
             }
             .logo-eye-right {
-              animation: logo-blink 4s infinite;
-              transform-origin: center;
-              transform-box: fill-box;
-              animation-delay: 0.15s;
+              animation: logo-blink 2s infinite ease-in-out;
+              transform-origin: 58px 43.5px;
             }
             .logo-glow-orange {
               filter: drop-shadow(0 0 3px rgba(255, 122, 0, 0.6));
