@@ -43,11 +43,22 @@ export default function HomePage() {
   const [hoveredShortId, setHoveredShortId] = useState<number | null>(null);
   const [showSplash, setShowSplash] = useState(true);
   const shortsContainerRef = useRef<HTMLDivElement>(null);
+  const hardwareContainerRef = useRef<HTMLDivElement>(null);
 
   const scrollShorts = (direction: 'left' | 'right') => {
     if (shortsContainerRef.current) {
       const scrollAmount = 320;
       shortsContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  const scrollHardware = (direction: 'left' | 'right') => {
+    if (hardwareContainerRef.current) {
+      const scrollAmount = 320;
+      hardwareContainerRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
       });
@@ -115,6 +126,51 @@ export default function HomePage() {
       categoryName: "Gold Loan / Girvi",
       icon: "BadgeDollarSign",
       videoCount: 2,
+    }
+  ];
+
+  const homepageHardware = [
+    {
+      title: 'Seuic Handheld RFID Scanner',
+      category: 'RFID Reader',
+      image: '/images/hardware/seuic-scanner-1.png',
+      icon: 'ScanLine',
+      color: 'text-primary'
+    },
+    {
+      title: 'TSC T820 RFID Barcode Printer',
+      category: 'RFID Printer',
+      image: '/images/hardware/tsc-t820-1.png',
+      icon: 'Printer',
+      color: 'text-accent'
+    },
+    {
+      title: 'One-Time Use RFID Tags',
+      category: 'RFID Tag',
+      image: '/images/hardware/one-time-tag.webp',
+      icon: 'Cpu',
+      color: 'text-emerald-400'
+    },
+    {
+      title: 'Reusable AM + RFID Hard Tags',
+      category: 'Security Tag',
+      image: '/images/hardware/reusable-am-rfid-tag.png',
+      icon: 'Rss',
+      color: 'text-orange-400'
+    },
+    {
+      title: 'PVC RFID Reusable Tags',
+      category: 'RFID Loop Tag',
+      image: '/images/hardware/pvc-reusable-tag-1.png',
+      icon: 'Tag',
+      color: 'text-indigo-400'
+    },
+    {
+      title: 'AM + RFID Security Gate',
+      category: 'Exit Security Gate',
+      image: '/images/hardware/rfid-gate.jpg',
+      icon: 'ShieldAlert',
+      color: 'text-red-400'
     }
   ];
 
@@ -513,6 +569,67 @@ export default function HomePage() {
                     </span>
                   </div>
                 </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Showroom Hardware Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+        <div className="flex justify-between items-center mb-8">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold font-display text-white flex items-center gap-2">
+              <Icons.HardDrive className="w-5 h-5 text-primary animate-pulse" /> Supported RFID Hardware
+            </h2>
+          </div>
+          {/* Scroll Navigation Arrows */}
+          <div className="flex gap-2 relative z-10">
+            <button
+              onClick={() => scrollHardware('left')}
+              className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              aria-label="Scroll left"
+            >
+              <Icons.ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={() => scrollHardware('right')}
+              className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+              aria-label="Scroll right"
+            >
+              <Icons.ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        <div 
+          ref={hardwareContainerRef}
+          className="flex gap-6 overflow-x-auto pb-4 scrollbar-none [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {homepageHardware.map((hw, idx) => (
+            <Link 
+              key={idx} 
+              href="/hardware" 
+              className="group shrink-0 snap-start w-64 md:w-72 bg-zinc-950/40 border border-white/5 hover:border-white/10 rounded-2xl p-4 transition-all duration-300 backdrop-blur-md shadow-lg"
+            >
+              <div className="relative aspect-video w-full rounded-xl bg-zinc-900 overflow-hidden border border-white/5 mb-4">
+                <img
+                  src={hw.image}
+                  alt={hw.title}
+                  className="w-full h-full object-contain p-2 group-hover:scale-103 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div className="space-y-2 text-left">
+                <div className="flex items-center gap-1.5">
+                  <span className={`p-1 rounded bg-white/5 border border-white/5 ${hw.color}`}>
+                    <CategoryIcon name={hw.icon} className="w-3.5 h-3.5" />
+                  </span>
+                  <span className="text-[10px] text-zinc-400 font-bold uppercase tracking-wider">{hw.category}</span>
+                </div>
+                <h3 className="text-sm font-bold font-display text-white line-clamp-1 group-hover:text-primary transition-colors">
+                  {hw.title}
+                </h3>
               </div>
             </Link>
           ))}
