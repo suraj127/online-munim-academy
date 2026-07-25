@@ -62,6 +62,11 @@ export default function Footer() {
               </li>
 
               <li>
+                <Link href="/hardware" className="text-zinc-400 hover:text-white text-sm transition-colors">
+                  Hardware
+                </Link>
+              </li>
+              <li>
                 <Link href="/support" className="text-zinc-400 hover:text-white text-sm transition-colors">
                   Support
                 </Link>
