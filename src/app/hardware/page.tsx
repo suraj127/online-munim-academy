@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ScanLine, Printer, ShieldAlert, Cpu, Rss, HelpCircle, HardDrive, Check } from 'lucide-react';
+import { ScanLine, Printer, ShieldAlert, Cpu, Rss, HelpCircle, HardDrive, Check, Tag } from 'lucide-react';
 import JewelryAmbientBackground from '@/components/JewelryAmbientBackground';
 
 interface HardwareItem {
@@ -92,6 +92,24 @@ const HARDWARE_ITEMS: HardwareItem[] = [
   },
   {
     id: 5,
+    category: 'tag',
+    title: 'PVC RFID Reusable Tags',
+    subtitle: 'Durable Waterproof Jewelry Loop Tags',
+    description: 'Long-lasting PVC hang tags embedded with rewriteable UHF RFID chips. Easily looped onto necklaces, watches, and bracelets, providing a highly cost-effective, reusable tagging solution without leaving any sticky residue.',
+    specs: [
+      'Sturdy scratch-resistant PVC construction',
+      'Flexible string/loop attachment options',
+      'Rewriteable EPC memory for infinite reuse',
+      'Waterproof and fade-resistant print surface'
+    ],
+    images: [
+      '/images/hardware/pvc-reusable-tag-1.png',
+      '/images/hardware/pvc-reusable-tag-2.jpg'
+    ],
+    icon: <Tag className="w-5 h-5 text-indigo-400" />
+  },
+  {
+    id: 6,
     category: 'gate',
     title: 'AM + RFID Security Gate',
     subtitle: 'Loss Prevention walk-through Pedestal',
@@ -116,7 +134,8 @@ export default function HardwarePage() {
     2: 0,
     3: 0,
     4: 0,
-    5: 0
+    5: 0,
+    6: 0
   });
 
   const filteredItems = HARDWARE_ITEMS.filter(
