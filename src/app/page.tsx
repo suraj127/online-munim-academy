@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Play, ArrowRight, Clock, Award, ChevronRight, Sparkles } from 'lucide-react';
+import { Play, ArrowRight, Clock, Award, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import * as Icons from 'lucide-react';
 import { getYouTubeThumbnail } from '@/utils/youtube';
@@ -367,7 +367,7 @@ export default function HomePage() {
         <div className="flex justify-between items-center mb-8">
           <div>
             <h2 className="text-2xl md:text-3xl font-bold font-display text-white flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-accent animate-pulse" /> Quick Tips & Shorts
+              Quick Tips & Shorts
             </h2>
           </div>
           {/* Scroll Navigation Arrows */}

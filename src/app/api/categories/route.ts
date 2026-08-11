@@ -139,7 +139,7 @@ const CATEGORIES: Category[] = [
     id: 19,
     name: "Tips & Tricks",
     description: "Power-user keyboard shortcuts, rapid barcode scan setup, and billing macros.",
-    icon: "Sparkles",
+    icon: "Zap",
     videoCount: 4
   },
   {
