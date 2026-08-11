@@ -87,3 +87,63 @@ body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+
+/* View Transitions API Configuration & Animations */
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(root) {
+  animation: 350ms cubic-bezier(0.4, 0, 0.2, 1) both fade-out-down;
+}
+
+::view-transition-new(root) {
+  animation: 450ms cubic-bezier(0.22, 1, 0.36, 1) both slide-up-enter;
+}
+
+/* Header Spatial Anchor */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+@keyframes slide-up-enter {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+    filter: blur(4px);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes fade-out-down {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    transform: translateY(30px);
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
