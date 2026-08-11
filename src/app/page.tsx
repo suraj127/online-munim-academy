@@ -92,9 +92,10 @@ export default function HomePage() {
     fetchData();
   }, []);
 
-  const featuredVideo = videos.find((v) => v.featured) || videos[0];
-  const latestVideos = videos.slice(0, 4);
-  const popularVideos = videos.filter((v) => v.difficulty === 'Intermediate' || v.difficulty === 'Advanced').slice(0, 3);
+  const longVideos = videos.filter((v) => !v.short);
+  const featuredVideo = longVideos.find((v) => v.featured) || longVideos[0] || videos[0];
+  const latestVideos = longVideos.slice(0, 4);
+  const popularVideos = longVideos.filter((v) => v.difficulty === 'Intermediate' || v.difficulty === 'Advanced').slice(0, 3);
   const displayedCategories = categories.slice(0, 6);
   const shortVideos = videos.filter((v) => v.short);
 
