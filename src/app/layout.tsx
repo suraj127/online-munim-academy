@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import PageTransition from "@/components/PageTransition";
 
 export const metadata: Metadata = {
   title: "Online Munim Academy | Premium Software Training Platform",
@@ -29,7 +28,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[#040814] text-[#F4F4F5]">
         <Navbar />
         <main className="flex-grow flex flex-col">
-          <PageTransition>{children}</PageTransition>
+          {children}
         </main>
         <Footer />
       </body>
