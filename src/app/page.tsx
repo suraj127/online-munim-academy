@@ -41,7 +41,7 @@ export default function HomePage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [hoveredShortId, setHoveredShortId] = useState<number | null>(null);
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const shortsContainerRef = useRef<HTMLDivElement>(null);
   const hardwareContainerRef = useRef<HTMLDivElement>(null);
 
@@ -66,10 +66,16 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 3000);
-    return () => clearTimeout(timer);
+    // Only show splash screen on the very first visit in the session
+    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
+    if (!hasSeenSplash) {
+      setShowSplash(true);
+      const timer = setTimeout(() => {
+        setShowSplash(false);
+        sessionStorage.setItem('hasSeenSplash', 'true');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   useEffect(() => {
