@@ -348,6 +348,37 @@ const VIDEOS: Video[] = [
     duration: "00:52",
     difficulty: "Intermediate",
     createdAt: "2026-07-18"
+  },
+  {
+    id: 33,
+    title: "Wholesale Stock Management in Omunim Jewellery Software",
+    description: "Covers adding wholesale stock, stock reports, inventory editing, and converting wholesale lot stock to retail item tags.",
+    category: "Inventory",
+    youtubeUrl: "https://youtu.be/rn657QoSfME",
+    featured: true,
+    duration: "14:20",
+    difficulty: "Intermediate",
+    createdAt: "2026-08-11"
+  },
+  {
+    id: 34,
+    title: "How to Sell Products on Online Munim (omunim.com)",
+    description: "Complete practical guide covering user setup, single and multi-item sales, direct sales, URD/old gold purchases, and sales reports.",
+    category: "Sales",
+    youtubeUrl: "https://youtu.be/rZfTTwQcQec",
+    duration: "16:45",
+    difficulty: "Beginner",
+    createdAt: "2026-08-11"
+  },
+  {
+    id: 35,
+    title: "Learn How to Manage Retail Stock Effortlessly",
+    description: "Comprehensive tutorial on managing retail stock, item tagging, stock level updates, and generating instant inventory reports.",
+    category: "Inventory",
+    youtubeUrl: "https://youtu.be/PItMYLF-Bj8",
+    duration: "11:30",
+    difficulty: "Beginner",
+    createdAt: "2026-08-11"
   }
 ];
 
