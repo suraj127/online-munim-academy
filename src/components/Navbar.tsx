@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { Search, Sun, Moon, Menu, X, Play } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import Logo from './Logo';
+import LoginIssueModal from './LoginIssueModal';
 
 interface Video {
   id: number;
@@ -92,6 +93,9 @@ export default function Navbar() {
               </div>
             </form>
 
+            {/* Bell Shape Icon Alert */}
+            <LoginIssueModal />
+
             {/* Dark Mode toggle button */}
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
@@ -104,6 +108,7 @@ export default function Navbar() {
 
           {/* Mobile hamburger button */}
           <div className="md:hidden flex items-center space-x-2">
+            <LoginIssueModal />
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
               className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400"
