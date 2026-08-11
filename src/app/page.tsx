@@ -95,7 +95,13 @@ export default function HomePage() {
   const longVideos = videos.filter((v) => !v.short);
   const featuredVideo = longVideos.find((v) => v.featured) || longVideos[0] || videos[0];
   const latestVideos = longVideos.slice(0, 4);
-  const popularVideos = longVideos.filter((v) => v.difficulty === 'Intermediate' || v.difficulty === 'Advanced').slice(0, 3);
+
+  const popularTargetIds = ['ffboqfNn4ns', 'xnf_Par-VB0', 'uopEEZ9NGI4', 'RNq5BYGC9PU'];
+  const popularVideosFound = popularTargetIds
+    .map((id) => videos.find((v) => v.youtubeUrl.includes(id)))
+    .filter((v): v is Video => v !== undefined);
+  const popularVideos = popularVideosFound.length > 0 ? popularVideosFound : longVideos.slice(0, 4);
+
   const displayedCategories = categories.slice(0, 6);
   const shortVideos = videos.filter((v) => v.short);
 
@@ -520,7 +526,7 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-4 px-4 pb-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 sm:gap-6 sm:pb-0 sm:px-0 sm:mx-0 sm:overflow-x-visible sm:snap-none">
+        <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-none gap-4 -mx-4 px-4 pb-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:pb-0 sm:px-0 sm:mx-0 sm:overflow-x-visible sm:snap-none">
           {popularVideos.map((video) => (
             <Link 
               key={video.id} 
