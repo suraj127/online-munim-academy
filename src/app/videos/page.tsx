@@ -309,7 +309,7 @@ function VideosListContent() {
                 {/* Categories Scroll */}
                 <div className="space-y-2">
                   <h4 className="text-xs font-bold uppercase text-zinc-500">Categories</h4>
-                  <div className="flex flex-col space-y-1.5 max-h-40 overflow-y-auto">
+                  <div className="flex flex-col space-y-1.5 max-h-56 overflow-y-auto pr-1">
                     {categories.map((cat) => {
                       const isSelected = selectedCategory.toLowerCase() === cat.name.toLowerCase();
                       return (
@@ -319,11 +319,14 @@ function VideosListContent() {
                             handleCategorySelect(cat.name);
                             setShowMobileFilters(false);
                           }}
-                          className={`text-left px-3 py-2 rounded-lg text-xs truncate ${
-                            isSelected ? 'bg-zinc-800 text-accent' : 'bg-zinc-900 text-zinc-400'
+                          className={`text-left px-3 py-2.5 rounded-lg text-xs font-medium shrink-0 min-h-[36px] leading-normal flex items-center justify-between ${
+                            isSelected ? 'bg-zinc-800 text-accent font-semibold' : 'bg-zinc-900 text-zinc-300 hover:bg-zinc-800'
                           }`}
                         >
-                          {cat.name}
+                          <span className="truncate">{cat.name}</span>
+                          <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-950 text-zinc-500 ml-1 shrink-0">
+                            {cat.videoCount}
+                          </span>
                         </button>
                       );
                     })}

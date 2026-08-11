@@ -1,42 +1,53 @@
 'use client';
 
 import { useState } from 'react';
-import { Bell, Download, Play, X, ExternalLink, AlertTriangle, CheckCircle, Sparkles } from 'lucide-react';
+import { Bell, Download, Play, X, ExternalLink, AlertTriangle, CheckCircle, Copy, Check, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function LoginIssueModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const [showLinkPopup, setShowLinkPopup] = useState(false);
+  const [copied, setCopied] = useState(false);
+
   const downloadUrl = "http://billingerp.in/online_munim_v486.zip";
   const videoUrl = "https://www.youtube.com/watch?v=iRvCKiaDgGI&t=17s";
   const embedVideoUrl = "https://www.youtube.com/embed/iRvCKiaDgGI?start=17&autoplay=1";
 
-  const handleDownload = () => {
-    window.open(downloadUrl, '_blank');
+  const handleDownloadClick = () => {
+    setShowLinkPopup(true);
+    // Automatically open link in new tab when clicked
+    window.open(downloadUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(downloadUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <>
-      {/* Navbar & Floating Trigger Bell Button */}
+      {/* Navbar Bell Shape Icon Alert Button */}
       <button
         onClick={() => setIsOpen(true)}
         className="relative p-2.5 rounded-xl bg-gradient-to-r from-amber-500/15 to-orange-500/15 border border-amber-500/30 text-amber-400 hover:text-amber-300 hover:bg-amber-500/25 transition-all duration-300 group flex items-center gap-2 cursor-pointer shadow-lg shadow-amber-500/10"
-        title="Offline Software Login Issue Alert"
-        aria-label="Software Login Alert"
+        title="Software Alert"
+        aria-label="Software Alert"
       >
         <Bell className="w-5 h-5 group-hover:rotate-12 transition-transform text-amber-400" />
         
-        {/* Pulse Badge */}
+        {/* Animated Red Notification Pulse Dot */}
         <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
           <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-500 border-2 border-zinc-950"></span>
         </span>
 
         <span className="hidden lg:inline-block text-xs font-bold text-amber-300">
-          Login Alert
+          Alert
         </span>
       </button>
 
-      {/* Modal Popup */}
+      {/* Main Alert Modal Popup */}
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
@@ -45,7 +56,10 @@ export default function LoginIssueModal() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                setShowLinkPopup(false);
+              }}
               className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
             />
 
@@ -59,7 +73,10 @@ export default function LoginIssueModal() {
             >
               {/* Close Button */}
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  setShowLinkPopup(false);
+                }}
                 className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-zinc-300 hover:text-white border border-white/10 transition-all z-20 cursor-pointer"
                 aria-label="Close modal"
               >
@@ -120,7 +137,7 @@ export default function LoginIssueModal() {
                 {/* Action CTA Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                   <button
-                    onClick={handleDownload}
+                    onClick={handleDownloadClick}
                     className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-500 hover:from-amber-300 hover:to-yellow-400 text-slate-950 font-black text-sm shadow-xl shadow-amber-500/25 transition-all transform hover:scale-[1.02] cursor-pointer"
                   >
                     <Download className="w-4 h-4 stroke-[2.5]" />
@@ -137,6 +154,55 @@ export default function LoginIssueModal() {
                     <span>Watch Full Video</span>
                   </a>
                 </div>
+
+                {/* Secondary Download Link Popup Box */}
+                <AnimatePresence>
+                  {showLinkPopup && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="p-4 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-left space-y-3 shadow-lg"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
+                          <Download className="w-4 h-4 text-amber-400" />
+                          Download Link Ready (v2.7.486)
+                        </span>
+                        <button
+                          onClick={() => setShowLinkPopup(false)}
+                          className="text-xs text-zinc-400 hover:text-white"
+                        >
+                          Dismiss
+                        </button>
+                      </div>
+
+                      <div className="flex items-center justify-between gap-2 p-2.5 rounded-xl bg-black/60 border border-zinc-800 text-xs font-mono text-amber-200 overflow-x-auto">
+                        <span className="truncate">{downloadUrl}</span>
+                        <button
+                          onClick={handleCopy}
+                          className="p-1.5 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 shrink-0 transition-colors"
+                          title="Copy Link"
+                        >
+                          {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                        </button>
+                      </div>
+
+                      <div className="flex items-center justify-between text-xs pt-1">
+                        <span className="text-zinc-400 text-[11px]">Opening in a new tab...</span>
+                        <a
+                          href={downloadUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-all"
+                        >
+                          <span>Open Link in New Tab</span>
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Footer Disclaimer */}
                 <div className="pt-2 border-t border-white/10 text-center text-xs text-zinc-400">
