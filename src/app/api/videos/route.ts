@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { fetchLatestYouTubeVideos } from '@/utils/youtubeSync';
 
 export interface Video {
   id: number;
@@ -383,5 +384,33 @@ const VIDEOS: Video[] = [
 ];
 
 export async function GET() {
+  try {
+    // Dynamically fetch latest uploads from Online Munim YouTube Channel
+    const fetchedVideos = await fetchLatestYouTubeVideos('@OnlineMunim');
+
+    if (fetchedVideos && fetchedVideos.length > 0) {
+      // Deduplicate: Filter out videos that already exist in VIDEOS array
+      const existingUrls = new Set(
+        VIDEOS.map((v) => {
+          const match = v.youtubeUrl.match(/(?:youtu\.be\/|watch\?v=|shorts\/)([^#&?]*)/);
+          return match ? match[1] : v.youtubeUrl;
+        })
+      );
+
+      const newUniqueVideos = fetchedVideos.filter((fv) => {
+        const match = fv.youtubeUrl.match(/(?:youtu\.be\/|watch\?v=|shorts\/)([^#&?]*)/);
+        const id = match ? match[1] : fv.youtubeUrl;
+        return !existingUrls.has(id);
+      });
+
+      // Combine newly synced videos at top with seed dataset
+      const combinedVideos = [...newUniqueVideos, ...VIDEOS];
+      return NextResponse.json(combinedVideos);
+    }
+  } catch (error) {
+    console.error('Error auto-syncing YouTube feed:', error);
+  }
+
+  // Fallback to internal dataset
   return NextResponse.json(VIDEOS);
 }
