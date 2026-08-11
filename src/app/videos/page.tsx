@@ -79,22 +79,35 @@ function VideosListContent() {
     loadData();
   }, []);
 
-  // Filter videos in-memory
-  const filteredVideos = videos.filter((video) => {
-    const matchesSearch =
-      searchQuery.trim() === '' ||
-      video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      video.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      video.category.toLowerCase().includes(searchQuery.toLowerCase());
+  // Popular Target IDs to feature first
+  const popularTargetIds = ['ffboqfNn4ns', 'xnf_Par-VB0', 'uopEEZ9NGI4', 'RNq5BYGC9PU'];
 
-    const matchesCategory =
-      selectedCategory === '' || video.category.toLowerCase() === selectedCategory.toLowerCase();
+  // Filter and sort videos: Popular tutorials first, followed by remaining videos
+  const filteredVideos = videos
+    .filter((video) => {
+      const matchesSearch =
+        searchQuery.trim() === '' ||
+        video.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        video.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        video.category.toLowerCase().includes(searchQuery.toLowerCase());
 
-    const matchesDifficulty =
-      selectedDifficulty === '' || video.difficulty.toLowerCase() === selectedDifficulty.toLowerCase();
+      const matchesCategory =
+        selectedCategory === '' || video.category.toLowerCase() === selectedCategory.toLowerCase();
 
-    return matchesSearch && matchesCategory && matchesDifficulty;
-  });
+      const matchesDifficulty =
+        selectedDifficulty === '' || video.difficulty.toLowerCase() === selectedDifficulty.toLowerCase();
+
+      return matchesSearch && matchesCategory && matchesDifficulty;
+    })
+    .sort((a, b) => {
+      const aIndex = popularTargetIds.findIndex((id) => a.youtubeUrl.includes(id));
+      const bIndex = popularTargetIds.findIndex((id) => b.youtubeUrl.includes(id));
+
+      if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+      if (aIndex !== -1) return -1;
+      if (bIndex !== -1) return 1;
+      return 0;
+    });
 
   const clearFilters = () => {
     setSearchQuery('');
@@ -389,6 +402,11 @@ function VideosListContent() {
                             <Play className="w-6 h-6 fill-current ml-0.5" />
                           </div>
                         </div>
+                        {popularTargetIds.some((id) => video.youtubeUrl.includes(id)) && (
+                          <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-amber-500/90 text-slate-950 text-[10px] font-black uppercase tracking-wider shadow-md">
+                            🔥 Popular
+                          </span>
+                        )}
                         <span className="absolute bottom-2 right-2 px-1.5 py-0.5 rounded bg-black/80 text-[10px] text-zinc-300 font-semibold">
                           {video.duration}
                         </span>
